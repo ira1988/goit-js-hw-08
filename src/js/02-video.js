@@ -14,27 +14,14 @@ const getTime = function (event) {
   localStorage.setItem('videoplayer-current-time', event.seconds);
 };
 
-function updateTime(event) {
-  let time = event.seconds;
-  time = localStorage.getItem('videoplayer-current-time') || '';
+
+
 
   player
-    .setCurrentTime()
-    .then(function (time) {
-      // seconds = the actual time that the player seeked to
-    })
-    .catch(function (error) {
-      switch (error.name) {
-        case 'RangeError':
-          break;
-
-        default:
-          break;
-      }
-    });
-}
+    .setCurrentTime(localStorage.getItem('videoplayer-current-time') ||0 )
+   
 
 player.on('timeupdate', getTime);
-player.on('play', updateTime);
+
 
 // setCurrentTime()
