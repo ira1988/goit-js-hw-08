@@ -1,4 +1,5 @@
 import Player from '@vimeo/player';
+import { throttle } from 'throttle-debounce';
 const iframe = document.querySelector('#vimeo-player');
 const options = {
   autoplay: true,
@@ -8,20 +9,31 @@ const options = {
 
 const player = new Player(iframe, options);
 
-const getTime = function (event) {
-  const playTime = event.seconds;
-  console.log(playTime);
-  localStorage.setItem('videoplayer-current-time', event.seconds);
-};
+player.on('timeupdate', throttle(1000, getTime));
 
+function getTime(event) {
+  console.log(event.seconds);
 
+  localStorage.setItem(
+    'videoplayer-current-time',
+    JSON.stringify(event.seconds)
+  );
+}
+player.setCurrentTime(localStorage.getItem('videoplayer-current-time') || 0);
 
+// function getTime(event) {
+//   let currentTimeValue = event.seconds;
+//   const timeSet = {
+//     currentTime: currentTimeValue,
+//   };
 
-  player
-    .setCurrentTime(localStorage.getItem('videoplayer-current-time') ||0 )
-   
+//   localStorage.setItem('videoplayer-current-time', JSON.stringify(timeSet));
+// }
 
-player.on('timeupdate', getTime);
+// const savedSettings = localStorage.getItem('videoplayer-current-time') ;
+// console.log(savedSettings);
+// const parsedSettings = JSON.parse(savedSettings)|| 0;
+// console.log(parsedSettings);
+// console.log(parsedSettings.currentTime);
 
-
-// setCurrentTime()
+// player.setCurrentTime(localStorage.getItem( parsedSettings.currentTime) || 0);
