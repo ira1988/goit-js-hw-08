@@ -4,7 +4,7 @@ const message = document.querySelector('.message');
 const button = document.querySelector('button');
 
 updateInput();
-
+let userData ={}
 form.addEventListener('input', setDataOnInput);
 form.addEventListener('submit', resetOnSubmit);
 
@@ -13,10 +13,10 @@ function setDataOnInput(event) {
     elements: { email, message },
   } = event.currentTarget;
 
-  const userData = {
-    userEmail: email.value,
-    userMessage: message.value,
-  };
+
+  userData.userEmail= email.value,
+  userData.userMessage= message.value,
+
 
   localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 }
