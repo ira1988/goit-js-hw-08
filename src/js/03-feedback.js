@@ -29,14 +29,14 @@ function updateInput() {
   form.elements.message.value = UserDataParsed.userMessage || '';
 }
 
-function resetOnSubmit() {
+function resetOnSubmit(event) {
   Event.preventDefault();
   const UserDataJSON = localStorage.getItem('feedback-form-state');
   const UserDataParsed = JSON.parse(UserDataJSON);
 
-  console.log(UserDataParsed.userEmail);
-  console.log(UserDataParsed.userMessage);
+  console.log(UserDataParsed);
 
-  form.reset();
+
+  event.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
