@@ -22,8 +22,8 @@ function updateInput() {
   const UserDataJSON = localStorage.getItem('feedback-form-state');
   const UserDataParsed = JSON.parse(UserDataJSON);
 
-  form.elements.email.value = UserDataParsed.userEmail || `test`;
-  form.elements.message.value = UserDataParsed.userMessage || `test`;
+  form.elements.email.value = UserDataParsed.userEmail || ""
+  form.elements.message.value = UserDataParsed.userMessage || ""
 }
 
 function resetOnSubmit(event) {
