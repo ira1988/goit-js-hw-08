@@ -22,12 +22,12 @@ function updateInput() {
   const UserDataJSON = localStorage.getItem('feedback-form-state');
   const UserDataParsed = JSON.parse(UserDataJSON);
 
-  form.elements.email.value = UserDataParsed.userEmail || '';
-  form.elements.message.value = UserDataParsed.userMessage || '';
+  form.elements.email.value = UserDataParsed.userEmail || `test`;
+  form.elements.message.value = UserDataParsed.userMessage || `test`;
 }
 
 function resetOnSubmit(event) {
-  Event.preventDefault();
+  event.preventDefault();
   const UserDataJSON = localStorage.getItem('feedback-form-state');
   const UserDataParsed = JSON.parse(UserDataJSON);
 
