@@ -11,29 +11,27 @@ const player = new Player(iframe, options);
 
 player.on('timeupdate', throttle(1000, getTime));
 
-function getTime(event) {
-  console.log(event.seconds);
-
-  localStorage.setItem(
-    'videoplayer-current-time',
-    JSON.stringify(event.seconds)
-  );
-}
-player.setCurrentTime(localStorage.getItem('videoplayer-current-time') || 0);
-
 // function getTime(event) {
-//   let currentTimeValue = event.seconds;
-//   const timeSet = {
-//     currentTime: currentTimeValue,
-//   };
+//   console.log(event.seconds);
 
-//   localStorage.setItem('videoplayer-current-time', JSON.stringify(timeSet));
+//   localStorage.setItem(
+//     'videoplayer-current-time',
+//     JSON.stringify(event.seconds)
+//   );
 // }
+// player.setCurrentTime(localStorage.getItem('videoplayer-current-time') || 0);
 
-// const savedSettings = localStorage.getItem('videoplayer-current-time') ;
-// console.log(savedSettings);
-// const parsedSettings = JSON.parse(savedSettings)|| 0;
-// console.log(parsedSettings);
-// console.log(parsedSettings.currentTime);
+function getTime(event) {
+  let currentTimeValue = event.seconds;
+  const timeSet = {
+    currentTime: currentTimeValue,
+  };
 
-// player.setCurrentTime(localStorage.getItem( parsedSettings.currentTime) || 0);
+  localStorage.setItem('videoplayer-current-time', JSON.stringify(timeSet));
+}
+
+const savedSettings = localStorage.getItem('videoplayer-current-time');
+
+const parsedSettings = JSON.parse(savedSettings);
+
+player.setCurrentTime(parsedSettings.currentTime || 0);
