@@ -12,29 +12,19 @@ function setDataOnInput(event) {
   const {
     elements: { email, message },
   } = event.currentTarget;
-  const userData= {
-    userEmail :email.value,
-    userMessage :message.value
-}
+  const userData = {
+    userEmail: email.value,
+    userMessage: message.value,
+  };
 
-    localStorage.setItem('feedback-form-state', JSON.stringify(userData));
+  localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 }
 
 function updateInput() {
   const userDataJSON = localStorage.getItem('feedback-form-state');
   const userDataParsed = JSON.parse(userDataJSON);
-    form.elements.email.value = userDataParsed?.userEmail || ""
-   form.elements.message.value = userDataParsed?.userMessage||""
-
-
-//   if (userDataParsed) {
-//     form.elements.email.value = userDataParsed.userEmail 
-//   }
-
-//   if (userDataParsed) {
-//     form.elements.message.value = userDataParsed.userMessage
-//  }
-
+  form.elements.email.value = userDataParsed?.userEmail || '';
+  form.elements.message.value = userDataParsed?.userMessage || '';
 }
 
 function resetOnSubmit(event) {
