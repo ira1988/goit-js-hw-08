@@ -6,15 +6,15 @@ const button = document.querySelector('button');
 updateInput();
 let userData = {};
 form.addEventListener('input', setDataOnInput);
-button.addEventListener('click', resetOnSubmit);
+form.addEventListener('submit', resetOnSubmit);
 
 function setDataOnInput(event) {
   const {
     elements: { email, message },
   } = event.currentTarget;
 
-  (userData.userEmail = email.value),
-    (userData.userMessage = message.value),
+  userData.userEmail = email.value
+    userData.userMessage = message.value
     localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 }
 
@@ -22,8 +22,14 @@ function updateInput() {
   const UserDataJSON = localStorage.getItem('feedback-form-state');
   const UserDataParsed = JSON.parse(UserDataJSON);
 
-  form.elements.email.value = UserDataParsed.userEmail || ""
-  form.elements.message.value = UserDataParsed.userMessage || ""
+  if (UserDataParsed) {
+    form.elements.email.value = UserDataParsed.userEmail 
+  }
+
+  if (UserDataParsed) {
+    form.elements.message.value = UserDataParsed.userMessage
+ }
+
 }
 
 function resetOnSubmit(event) {
