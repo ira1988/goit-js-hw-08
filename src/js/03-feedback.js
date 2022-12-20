@@ -3,11 +3,11 @@ import { throttle } from 'throttle-debounce';
 const form = document.querySelector('.feedback-form');
 const input = document.querySelector('.email');
 const message = document.querySelector('.message');
-const button = document.querySelector('button');
+
 
 updateInput();
 
-form.addEventListener('input', throttle(1000, setDataOnInput));
+form.addEventListener('input', throttle(500, setDataOnInput));
 form.addEventListener('submit', resetOnSubmit);
 
 function setDataOnInput(event) {
